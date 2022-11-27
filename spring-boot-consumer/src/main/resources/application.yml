@@ -1,0 +1,12 @@
+server:
+  port: 8081
+  error.include-message: always
+
+solace:
+  hostUrl: "tcps://mrkxpin06uhoy.messaging.solace.cloud:55443"
+  vpnName: "hari_conf_service"
+  userName: "solace-cloud-client"
+  password: "uouhp8q0cnd4uon8i6egi26t1g"
+  reconnectionAttempts: "20"
+  connectionRetriesPerHost: "5"
+  topicName: "solace/samples/java/direct/pub/*"
