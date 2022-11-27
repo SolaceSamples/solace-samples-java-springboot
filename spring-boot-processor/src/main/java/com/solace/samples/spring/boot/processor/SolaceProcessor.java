@@ -17,6 +17,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PreDestroy;
 import java.util.Properties;
 
 @Component
@@ -29,16 +30,17 @@ public class SolaceProcessor {
     private DirectMessagePublisher directMessagePublisher;
     private DirectMessageReceiver directMessageReceiver;
     private OutboundMessageBuilder messageBuilder;
+    private MessagingService messagingService;
 
     private final String outboundMessageTopicNameSuffix = "/replyMessage";
 
     @EventListener
     public void onApplicationEvent(final ApplicationReadyEvent applicationReadyEvent) {
-        
+
         //1. Set up the properties including username, password, vpnHostUrl and other control parameters.
         final Properties properties = setupPropertiesForConnection();
 
-        final MessagingService messagingService = MessagingService.builder(ConfigurationProfile.V1).fromProperties(properties).build();
+        messagingService = MessagingService.builder(ConfigurationProfile.V1).fromProperties(properties).build();
         messagingService.connect();  // blocking connect
         setupConnectivityHandlingInMessagingService(messagingService);
 
@@ -93,5 +95,13 @@ public class SolaceProcessor {
         properties.setProperty(SolaceProperties.TransportLayerProperties.RECONNECTION_ATTEMPTS, configProperties.getReconnectionAttempts());  // recommended settings
         properties.setProperty(SolaceProperties.TransportLayerProperties.CONNECTION_RETRIES_PER_HOST, configProperties.getConnectionRetriesPerHost());
         return properties;
+    }
+
+    @PreDestroy
+    public void houseKeepingOnBeanDestroy() {
+        log.info("The bean is getting destroyed, doing housekeeping activities");
+        directMessageReceiver.terminate(1000);
+        directMessagePublisher.terminate(1000);
+        messagingService.disconnect();
     }
 }
