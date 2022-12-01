@@ -1,8 +1,7 @@
 ## Contents
 
 This sample builds a simple Springboot based application consumes an event that is published to a Solace topic using the
-new
-Java API.
+Solace PubSub+ Messaging API for Java (not JCSMP).
 
 ## Prerequisites
 
@@ -13,8 +12,7 @@ cd spring-boot-datamodel
 mvn clean install
 ```
 
-See the individual tutorials linked from
-the [tutorials home page](https://github.com/SolaceSamples/solace-samples-springboot/) for full details which can walk
+See the individual code samples linked from the [Springboot code samples home page](https://github.com/SolaceSamples/solace-samples-springboot/) for full details which can walk
 you through the samples, what they do, and how to correctly run them to explore Spring
 
 ## Exploring the Samples

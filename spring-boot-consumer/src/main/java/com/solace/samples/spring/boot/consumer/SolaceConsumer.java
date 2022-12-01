@@ -6,7 +6,7 @@ import com.solace.messaging.config.profile.ConfigurationProfile;
 import com.solace.messaging.receiver.DirectMessageReceiver;
 import com.solace.messaging.receiver.MessageReceiver;
 import com.solace.messaging.resources.TopicSubscription;
-import com.solace.samples.spring.boot.config.SolaceBinderConfigProperties;
+import com.solace.samples.spring.boot.config.SolaceConfigProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -21,7 +21,7 @@ import java.util.Properties;
 public class SolaceConsumer {
 
     @Autowired
-    private SolaceBinderConfigProperties configProperties;
+    private SolaceConfigProperties configProperties;
     private DirectMessageReceiver directMessageReceiver;
     private MessagingService messagingService;
 
@@ -31,16 +31,21 @@ public class SolaceConsumer {
         //1. Set up the properties including username, password, vpnHostUrl and other control parameters.
         final Properties properties = setupPropertiesForConnection();
 
+        //2. Create the MessagingService object and establishes the connection with the Solace event broker
         messagingService = MessagingService.builder(ConfigurationProfile.V1).fromProperties(properties).build();
-        messagingService.connect();  // blocking connect
+        messagingService.connect();  // This is a blocking connect action
         setupConnectivityHandlingInMessagingService(messagingService);
 
+        //3. Build and start the receiver object
         directMessageReceiver = messagingService.createDirectMessageReceiverBuilder()
                 .withSubscriptions(TopicSubscription.of(configProperties.getTopicName()))
                 .build();
+        directMessageReceiver.setReceiveFailureListener(failedReceiveEvent -> System.out.println("### FAILED RECEIVE EVENT " + failedReceiveEvent));
         directMessageReceiver.start();
 
+        //4. Build the handler that will be executed for each incoming event
         final MessageReceiver.MessageHandler messageHandler = buildMessageHandler();
+        //5. Receive events in an async/non-blocking manner
         directMessageReceiver.receiveAsync(messageHandler);
     }
 
@@ -70,6 +75,8 @@ public class SolaceConsumer {
         return properties;
     }
 
+    //This method will be called once just before this bean is removed from the application context
+    // and can be used to do housekeeping activities like publisher termination and messagingService disconnection
     @PreDestroy
     public void houseKeepingOnBeanDestroy() {
         log.info("The bean is getting destroyed, doing housekeeping activities");

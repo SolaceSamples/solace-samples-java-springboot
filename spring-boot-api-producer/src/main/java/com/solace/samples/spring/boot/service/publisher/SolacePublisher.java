@@ -7,7 +7,7 @@ import com.solace.messaging.publisher.DirectMessagePublisher;
 import com.solace.messaging.publisher.OutboundMessage;
 import com.solace.messaging.publisher.OutboundMessageBuilder;
 import com.solace.messaging.resources.Topic;
-import com.solace.samples.spring.boot.config.SolaceBinderConfigProperties;
+import com.solace.samples.spring.boot.config.SolaceConfigProperties;
 import com.solace.samples.spring.common.SensorReading;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ import java.util.Properties;
 public class SolacePublisher {
 
     @Autowired
-    private SolaceBinderConfigProperties configProperties;
+    private SolaceConfigProperties configProperties;
     private DirectMessagePublisher publisher;
     private OutboundMessageBuilder messageBuilder;
     private MessagingService messagingService;
@@ -34,23 +34,30 @@ public class SolacePublisher {
         //1. Set up the properties including username, password, vpnHostUrl and other control parameters.
         final Properties properties = setupPropertiesForConnection();
 
+        //2. Create the MessagingService object and establishes the connection with the Solace event broker
         messagingService = MessagingService.builder(ConfigurationProfile.V1).fromProperties(properties).build();
-        messagingService.connect();  // blocking connect
+        messagingService.connect();  // This is a blocking connect action
+
+        //3. Register event handlers and callbacks for connection error handling.
         setupConnectivityHandlingInMessagingService(messagingService);
 
+        //4. Build and start the publisher object
         publisher = messagingService.createDirectMessagePublisherBuilder()
                 .onBackPressureWait(1)
                 .build();
+        // can be called for ACL violations
+        publisher.setPublishFailureListener(e -> System.out.println("### FAILED PUBLISH " + e));
         publisher.start();
 
-        // can be called for ACL violations,
-        publisher.setPublishFailureListener(e -> System.out.println("### FAILED PUBLISH " + e));
+        //5. Build the messageBuilder instance
         messageBuilder = messagingService.messageBuilder();
     }
 
     public void publishMessage(final SensorReading sensorReading) {
         try {
+            //Build the message according to business requirement
             final OutboundMessage message = messageBuilder.build(sensorReading.toString());  // binary payload message
+            //Publish the message with the required topic (if required dynamic) identifier.
             publisher.publish(message, Topic.of((configProperties.getTopicName() + sensorReading.getSensorID())));
         } catch (final RuntimeException runtimeException) {
             log.error("Error encountered while publishing event, exception :", runtimeException);
@@ -74,6 +81,8 @@ public class SolacePublisher {
         return properties;
     }
 
+    //This method will be called once just before this bean is removed from the application context
+    // and can be used to do housekeeping activities like publisher termination and messagingService disconnection
     @PreDestroy
     public void houseKeepingOnBeanDestroy() {
         log.info("The bean is getting destroyed, doing housekeeping activities");

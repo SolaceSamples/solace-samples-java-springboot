@@ -21,8 +21,8 @@ The Spring Tutorials require that you have access to a PubSub+ Service. You can 
 
 ## Contents
 
-This repository contains code and matching tutorial walk through for different basic scenarios using the new Java API (not the JCSMP)
-It is best to view the associated [tutorials home page](https://github.com/SolaceSamples/solace-samples-springboot).
+This repository contains code and matching tutorial walk through for different basic scenarios using the Solace PubSub+ Messaging API for Java (not the JCSMP)
+It is best to view the associated [tutorials home page](https://tutorials.solace.dev/).
 
 ## Prerequisites
 
@@ -41,7 +41,7 @@ cd spring-boot-consumer
 mvn clean spring-boot:run
 ```
 
-See the individual tutorials linked from the [tutorials home page](https://github.com/SolaceSamples/solace-samples-springboot/) for full details which can walk you through the samples, what they do, and how to correctly run them to explore Spring
+See the individual code samples linked from the [springboot code samples](https://github.com/SolaceSamples/solace-samples-springboot/) for full details which can walk you through the samples, what they do, and how to correctly run them to explore Spring
 
 ## Exploring the Samples
 

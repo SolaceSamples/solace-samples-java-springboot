@@ -1,7 +1,7 @@
 ## Contents
 
 This project contains the Java POJO models which have been used in the solace-samples-springboot
-It is best to view the associated [tutorials home page](https://github.com/SolaceSamples/solace-samples-springboot).
+It is best to view the associated [Springboot code samples home page](https://github.com/SolaceSamples/solace-samples-springboot).
 
 ## Prerequisites
 
@@ -11,7 +11,7 @@ cd spring-boot-datamodel
 mvn clean install
 ```
 
-See the individual tutorials linked from the [tutorials home page](https://github.com/SolaceSamples/solace-samples-springboot/) for full details which can walk you through the samples, what they do, and how to correctly run them to explore Spring
+See the individual code samples linked from the [Springboot code samples home page](https://github.com/SolaceSamples/solace-samples-springboot/) for full details which can walk you through the samples, what they do, and how to correctly run them to explore Spring
 
 ## Exploring the Samples
 

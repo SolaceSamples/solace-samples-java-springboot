@@ -1,8 +1,7 @@
 ## Contents
 
 This sample builds a Springboot based application that acts as a processor of events.</br>
-It consumes an incoming event on a subscribed topic and in turn publishes a new event on a separate topic using the new
-Java API.
+It consumes an incoming event on a subscribed topic and in turn publishes a new event on a separate topic using the Solace PubSub+ Messaging API for Java (not JCSMP).
 
 ## Prerequisites
 
@@ -13,8 +12,7 @@ cd spring-boot-datamodel
 mvn clean install
 ```
 
-See the individual tutorials linked from
-the [tutorials home page](https://github.com/SolaceSamples/solace-samples-springboot/) for full details which can walk
+See the individual code samples linked from the [Springboot code samples](https://github.com/SolaceSamples/solace-samples-springboot/) for full details which can walk
 you through the samples, what they do, and how to correctly run them.
 
 ## Exploring the Sample

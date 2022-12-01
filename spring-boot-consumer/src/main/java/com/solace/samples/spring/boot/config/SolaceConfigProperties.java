@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "solace")
 @Getter
 @Setter
-public class SolaceBinderConfigProperties {
+public class SolaceConfigProperties {
     private String hostUrl;
     private String vpnName;
     private String userName;
