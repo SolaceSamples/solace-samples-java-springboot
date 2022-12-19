@@ -15,17 +15,15 @@ you through the samples, what they do, and how to correctly run them to explore 
 
 ## Exploring the Samples
 
-This sample exposes a simple REST API `/solace/samples/spring/boot/producer/sensor/reading` </br>
+This sample exposes a simple REST API `/solace/samples/spring/boot/producer/sensor/reading`</br>
 Present in this repo is a postman collection which can be used to test out this API.
 
-The configuration by default produces events to the topic : `solace/samples/java/direct/pub/` </br>.
-To demonstrate the capabilities of the dynamic topics, the topic string is finalized by using inputs from the incoming
-request body.<br>
+The configuration by default produces events to the topic : `solace/samples/java/direct/pub/`. </br>
+To demonstrate the capabilities of the dynamic topics, the topic string is finalized by using inputs from the incoming request body.<br>
 To run the application, update the configuration parameters in the file application.yml. </br>
-The required connection parameters can be found in the broker Connect tab's : **Solace Messaging**
-section : [Connection Parameters Image](readmeImages/connectionParameters.png)</br>
-To inspect the messages being produced, subscribe to the configured topic in the broker console's **Try-Me**
-tab : [Subscriber Connection Image](readmeImages/subscriberImage.png)<br>
+The required connection parameters can be found in the broker Connect tab's : **Solace Messaging** section : ![Connection Parameters Image](readmeImages/connectionParameters.png)</br>
+</br></br>
+To inspect the messages being produced, subscribe to the configured topic (`solace/samples/java/direct/pub/*`)in the broker console's **Try-Me** tab :</br> ![Subscriber Connection Image](readmeImages/subscriberImage.png)<br>
 
 ### Setting up your preferred IDE
 

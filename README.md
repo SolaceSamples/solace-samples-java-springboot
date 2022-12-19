@@ -47,9 +47,20 @@ See the individual code samples linked from the [springboot code samples](https:
 
 ### Setting up your preferred IDE
 
-Using a modern Java IDE provides cool productivity features like auto-completion, on-the-fly compilation, assisted refactoring and debugging which can be useful when you're exploring the samples and even modifying the samples. Follow the steps below for your preferred IDE.
+Using a modern Java IDE provides cool productivity features like auto-completion, on-the-fly compilation, assisted refactoring and debugging which can be useful when you're exploring the samples and even modifying the samples. Follow the steps below for your preferred IDE. </br>
+This repository uses Maven projects. If you would like to import the projects into your favorite IDE you should be able to import them as Maven Projects. For examples, in eclipse choose "File -> Import -> Maven -> Existing Maven Projects -> Next -> Browse for your repo -> Select which projects -> Click Finish" </br>
 
-This repository uses Maven projects. If you would like to import the projects into your favorite IDE you should be able to import them as Maven Projects. For examples, in eclipse choose "File -> Import -> Maven -> Existing Maven Projects -> Next -> Browse for your repo -> Select which projects -> Click Finish"
+### Highlevel sample description
+
+This repository consists of 4 smaller applications :
+
+- spring-boot-datamodel : This app creates and installs a maven artifact containing datamodels which are used in the other applications </br>
+- spring-boot-api-producer : This application exposes a REST API which connects to the Solace broker and publishes an event in the topic configured in its properties files </br>
+- spring-boot-consumer : This application defines a Springboot based microservices which functions as a consumer for the events that are published by the `spring-boot-api-producer` application </br>
+- spring-boot-processor : This application functions as a Processor i.e. simultaneously consumes and produces events. The events which are published by the `spring-boot-api-producer`
+                            are consumed and in turn a reply message is published to a new topic.
+
+
 
 ## Contributing
 

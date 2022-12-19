@@ -23,7 +23,7 @@ repository [Spring-boot-api-producer](https://github.com/SolaceSamples/solace-sa
 
 To run the application, update the configuration parameters in the file application.yml. </br>
 The required connection parameters can be found in the broker Connect tab's : **Solace Messaging**
-section : [Connection Parameters Image](readmeImages/connectionParameters.png)</br>
+section : ![Connection Parameters Image](readmeImages/connectionParameters.png)</br>
 
 ### Setting up your preferred IDE
 

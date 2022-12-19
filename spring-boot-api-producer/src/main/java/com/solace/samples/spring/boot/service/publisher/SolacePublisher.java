@@ -59,6 +59,7 @@ public class SolacePublisher {
             final OutboundMessage message = messageBuilder.build(sensorReading.toString());  // binary payload message
             //Publish the message with the required topic (if required dynamic) identifier.
             publisher.publish(message, Topic.of((configProperties.getTopicName() + sensorReading.getSensorID())));
+            log.info("Published SensorReading event :{} on topic : {}", sensorReading, (configProperties.getTopicName() + sensorReading.getSensorID()));
         } catch (final RuntimeException runtimeException) {
             log.error("Error encountered while publishing event, exception :", runtimeException);
         }

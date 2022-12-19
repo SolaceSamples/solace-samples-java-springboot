@@ -19,17 +19,17 @@ you through the samples, what they do, and how to correctly run them.
 
 This sample acts as a processor i.e. consumes and publishes events at the same time. 
 The events for consumption come from the topics mapped to the subscription `solace/samples/java/direct/pub/*` </br>
-The new message created is published to the topic structure `solace/samples/java/direct/pub/*/replyMessage` </br>
+The new message created is published to the topic structure `solace/samples/java/direct/pub/*/newOutboundMessage` </br>
 
 The corresponding producer application can be found on in this same project under the
 repository [Spring-boot-api-producer](https://github.com/SolaceSamples/solace-samples-springboot/tree/main/spring-boot-api-producer)
 
 To run the application, update the configuration parameters in the file application.yml. </br>
 The required connection parameters can be found in the broker Connect tab's : **Solace Messaging**
-section : [Connection Parameters Image](readmeImages/connectionParameters.png)</br>
+section : ![Connection Parameters Image](readmeImages/connectionParameters.png)</br>
 
 To inspect the messages being produced, subscribe to the configured topic in the broker console's **Try-Me**
-tab : [Subscriber Connection Image](readmeImages/subscriberImage.png)<br>
+tab : ![Subscriber Connection Image](readmeImages/subscriberImage.png)<br>
 
 ### Setting up your preferred IDE
 

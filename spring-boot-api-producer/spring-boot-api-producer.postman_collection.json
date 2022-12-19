@@ -20,12 +20,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/solace/samples/spring/boot/producer/sensor/reading",
+					"raw": "http://localhost:8083/solace/samples/spring/boot/producer/sensor/reading",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8083",
 					"path": [
 						"solace",
 						"samples",
