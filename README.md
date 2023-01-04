@@ -17,8 +17,11 @@ This repository contains code samples for doing so, but it's best to clone the r
 
 ## Access a PubSub+ Service
 
-The Spring Tutorials require that you have access to a PubSub+ Service. You can quickly set one up for FREE by following [these instructions](https://solace.com/try-it-now/)
+The "Getting Started" tutorials will get you up to speed and sending messages with Solace technology as quickly as possible. There are three ways you can get started:
 
+- Follow [these instructions](https://cloud.solace.com/learn/group_getting_started/ggs_signup.html) to quickly spin up a cloud-based Solace messaging service for your applications.
+- Follow [these instructions](https://docs.solace.com/Solace-SW-Broker-Set-Up/Setting-Up-SW-Brokers.htm) to start the Solace VMR in leading Clouds, Container Platforms or Hypervisors. The tutorials outline where to download and how to install the Solace VMR.
+- If your company has Solace message routers deployed, contact your middleware team to obtain the host name or IP address of a Solace message router to test against, a username and password to access it, and a VPN in which you can produce and consume messages.
 ## Contents
 
 This repository contains code and matching tutorial walk through for different basic scenarios using the Solace PubSub+ Messaging API for Java (not the JCSMP)
@@ -40,7 +43,6 @@ To try individual samples, go into the project directory and run the sample usin
 cd spring-boot-consumer
 mvn clean spring-boot:run
 ```
-
 See the individual code samples linked from the [springboot code samples](https://github.com/SolaceSamples/solace-samples-springboot/) for full details which can walk you through the samples, what they do, and how to correctly run them to explore Spring
 
 ## Exploring the Samples
@@ -59,8 +61,6 @@ This repository consists of 4 smaller applications :
 - spring-boot-consumer : This application defines a Springboot based microservices which functions as a consumer for the events that are published by the `spring-boot-api-producer` application </br>
 - spring-boot-processor : This application functions as a Processor i.e. simultaneously consumes and produces events. The events which are published by the `spring-boot-api-producer`
                             are consumed and in turn a reply message is published to a new topic.
-
-
 
 ## Contributing
 
