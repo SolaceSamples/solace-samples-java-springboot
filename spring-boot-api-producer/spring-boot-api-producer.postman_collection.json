@@ -1,0 +1,44 @@
+{
+	"info": {
+		"_postman_id": "ee085b6d-f532-4172-b5d1-23caf5834062",
+		"name": "spring-boot-api-producer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "spring-boot-api-producer REST API",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"sensorID\": \"0001\",\n    \"temperature\": \"30\",\n    \"baseUnit\": \"CELSIUS\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/solace/samples/spring/boot/producer/sensor/reading",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"solace",
+						"samples",
+						"spring",
+						"boot",
+						"producer",
+						"sensor",
+						"reading"
+					]
+				},
+				"description": "A simple springboot based REST API which publishes an event to a Solace topic using the new Java API."
+			},
+			"response": []
+		}
+	]
+}
