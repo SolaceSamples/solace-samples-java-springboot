@@ -10,7 +10,7 @@ The Spring Framework is an application framework and inversion of control contai
 ## Solace PubSub+ Spring
 
 At Solace, we support integrating our PubSub+ Event Broker with Spring in several ways to promote the ease of building event driven applications. 
-This repository contains code samples for doing so, but it's best to clone the repo and then follow the step-by-step tutorials here: [tutorials home page](https://github.com/SolaceSamples/solace-samples-springboot)
+This repository contains code samples for doing so, but it's best to clone the repo :
 * Spring Boot REST Producer 
 * Spring Boot Consumer
 * Spring Boot Processor
