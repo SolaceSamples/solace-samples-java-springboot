@@ -2,12 +2,11 @@ server:
   port: 8085
   error.include-message: always
 
-
 solace:
-  hostUrl: "TCP_CONNECTION_URL"
-  vpnName: "VPN_NAME"
-  userName: "USERNAME"
-  password: "PASSWORD"
+  hostUrl: "tcp://localhost:55555"
+  vpnName: "default"
+  userName: "default"
+  password: "default"
   reconnectionAttempts: "20"
   connectionRetriesPerHost: "5"
   topicName: "solace/samples/java/direct/pub/*"
