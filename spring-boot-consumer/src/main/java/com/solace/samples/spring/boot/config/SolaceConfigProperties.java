@@ -17,4 +17,6 @@ public class SolaceConfigProperties {
     private String reconnectionAttempts;
     private String connectionRetriesPerHost;
     private String topicName;
+    private String[] topicSubscriptions;
+    private String queueName;
 }
