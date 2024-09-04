@@ -18,7 +18,7 @@ import java.util.Properties;
 
 @Component
 @Slf4j
-public class SolaceConsumer {
+public class SolaceDirectConsumer {
 
     @Autowired
     private SolaceConfigProperties configProperties;

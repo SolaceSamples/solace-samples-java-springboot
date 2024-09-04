@@ -3,10 +3,17 @@ server:
   error.include-message: always
 
 solace:
-  hostUrl: "tcp://localhost:55555"
+  hostUrl: "tcp://localhost:55554"
   vpnName: "default"
   userName: "default"
   password: "default"
   reconnectionAttempts: "20"
   connectionRetriesPerHost: "5"
   topicName: "solace/samples/java/direct/pub/*"
+  queues:
+    queue:
+      name: "flightInfoQ"
+      subscriptions:
+        - "solace/samples/java/persistent/flight/boarding/1234/>"
+        - "solace/samples/java/persistent/flight/delayed/ewr/*"
+        - "solace/samples/java/persistent/flight/boarding/5678/atl/slc"
