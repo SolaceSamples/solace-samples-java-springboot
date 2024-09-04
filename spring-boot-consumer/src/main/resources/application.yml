@@ -10,8 +10,10 @@ solace:
   reconnectionAttempts: "20"
   connectionRetriesPerHost: "5"
   topicName: "solace/samples/java/direct/pub/*"
-  topicSubscriptions:
-    - "solace/samples/java/persistent/flight/boarding/1234/>"
-    - "solace/samples/java/persistent/flight/delayed/ewr/*"
-    - "solace/samples/java/persistent/flight/boarding/5678/atl/slc"
-  queueName: "flightInfoQ"
+  queues:
+    queue:
+      name: "flightInfoQ"
+      subscriptions:
+        - "solace/samples/java/persistent/flight/boarding/1234/>"
+        - "solace/samples/java/persistent/flight/delayed/ewr/*"
+        - "solace/samples/java/persistent/flight/boarding/5678/atl/slc"

@@ -46,19 +46,21 @@ public class SolaceGuaranteedConsumer {
         //3. Build and start the receiver object
         persistentMessageReceiver = messagingService.createPersistentMessageReceiverBuilder()
                 .withRequiredMessageClientOutcomeOperationSupport(
-                        new MessageAcknowledgementConfiguration.Outcome[]{Outcome.ACCEPTED, Outcome.FAILED, Outcome.REJECTED})
+                        Outcome.ACCEPTED, Outcome.FAILED, Outcome.REJECTED)
                 .withMissingResourcesCreationStrategy(                      // Configures the missing resources creation strategy.
                         MissingResourcesCreationConfiguration.MissingResourcesCreationStrategy.CREATE_ON_START)   // The strategy to attempt create missing resources when the connection is established.
                 //.withMessageAutoAcknowledgement()                         // Client message ack is default behavior.  Enable for auto ack
-
-                .build(Queue.durableExclusiveQueue(configProperties.getQueueName()))           // If it does not exist, this configuration will provision the non-durable queue on the broker when the start() method is called.
-                ;
+                // Other types of queue can be built.
+                //Queue.durableNonExclusiveQueue(String queueName)
+                //Queue.nonDurableExclusiveQueue(String queueName)
+                .build(Queue.durableExclusiveQueue(configProperties.getQueues().getQueue().getName()))           // If it does not exist, this configuration will provision the non-durable queue on the broker when the start() method is called.
+        ;
 
         persistentMessageReceiver.setReceiveFailureListener(failedReceiveEvent -> System.out.println("### FAILED RECEIVE EVENT " + failedReceiveEvent));
         persistentMessageReceiver.start();
 
         //4. Add topic subscriptions to the queue
-        for (String topic : configProperties.getTopicSubscriptions()) {
+        for (String topic : configProperties.getQueues().getQueue().getSubscriptions()) {
             persistentMessageReceiver.addSubscription(TopicSubscription.of(topic));
         }
 
