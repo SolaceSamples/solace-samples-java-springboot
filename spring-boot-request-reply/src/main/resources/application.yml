@@ -3,10 +3,10 @@ server:
   error.include-message: always
 
 solace:
-  hostUrl: "tcps://mr-connection-pubxm5xxuhk.messaging.solace.cloud:55443"
-  vpnName: "giri-demo-broker"
-  userName: "solace-cloud-client"
-  password: "9vftp9vsq4ckkn1svs5rkiskld"
+  hostUrl: "tcp://localhost:55555"
+  vpnName: "default"
+  userName: "default"
+  password: "default"
   reconnectionAttempts: "20"
   connectionRetriesPerHost: "5"
   requestQueue:
