@@ -1,0 +1,19 @@
+server:
+  port: 8082
+  error.include-message: always
+
+solace:
+  hostUrl: "tcp://localhost:55555"
+  vpnName: "default"
+  userName: "default"
+  password: "default"
+  reconnectionAttempts: "20"
+  connectionRetriesPerHost: "5"
+  requestQueue:
+    name: "sample/request/queue"
+    subscription: "solace/samples/request-reply/request"
+  replyQueue:
+    name: "sample/reply/queue"
+    subscription: "solace/samples/request-reply/reply"
+  requestTopic: "solace/samples/request-reply/request"
+  replyTimeoutMs: 10000
