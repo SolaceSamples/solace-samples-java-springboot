@@ -4,11 +4,12 @@ This Repository contains examples demonstrating how to use the PubSub+ Messaging
 ## Exploring the Samples
 
 ### Samples Descriptions
-This repository consists of 4 smaller applications :
+This repository consists of 5 smaller applications :
 - spring-boot-datamodel : This app creates and installs a maven artifact containing datamodels which are used in the other applications
 - spring-boot-api-producer : This application exposes a REST API which connects to the Solace broker and publishes an event in the topic configured in its properties files
 - spring-boot-consumer : This application defines a Spring Boot microservice which functions as a consumer for the events that are published by the `spring-boot-api-producer` application
 - spring-boot-processor : This application functions as a Processor i.e. simultaneously consumes and produces events. The events which are published by the `spring-boot-api-producer` are consumed and in turn a processed message is published to a new topic.
+- spring-boot-request-reply : This application demonstrates the guaranteed request/reply interaction pattern using the Solace Java API. It hosts both a requester (REST-triggered) and a replier bean in a single JVM. See its module README for pattern theory, implementation walkthrough, and production adaptation guidance.
 
 ## Prerequisites
 ### Access a PubSub+ Service

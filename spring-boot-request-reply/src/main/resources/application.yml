@@ -1,0 +1,19 @@
+server:
+  port: 8082
+  error.include-message: always
+
+solace:
+  hostUrl: "tcps://mr-connection-pubxm5xxuhk.messaging.solace.cloud:55443"
+  vpnName: "giri-demo-broker"
+  userName: "solace-cloud-client"
+  password: "9vftp9vsq4ckkn1svs5rkiskld"
+  reconnectionAttempts: "20"
+  connectionRetriesPerHost: "5"
+  requestQueue:
+    name: "sample/request/queue"
+    subscription: "solace/samples/request-reply/request"
+  replyQueue:
+    name: "sample/reply/queue"
+    subscription: "solace/samples/request-reply/reply"
+  requestTopic: "solace/samples/request-reply/request"
+  replyTimeoutMs: 10000
